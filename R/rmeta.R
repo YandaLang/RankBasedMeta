@@ -38,7 +38,7 @@ rmeta = function(data, effect = "fixed", method = "MM", fullsample = TRUE){
       sum_2SHL12P = matrix(NA,nrow=dat_col/2,ncol=4)
       sum_2SHLKY = matrix(NA,nrow=dat_col/2,ncol=6)
 
-      alpha = rep(0.05,dat_col)
+      alpha = 0.05
       sumStat = getInfo(data,alpha)
       sum_MM = sumStat[,c(5,6,2,1)]
       sum_LS = sumStat[,c(3,4,2,1)]
@@ -164,7 +164,7 @@ rmeta = function(data, effect = "fixed", method = "MM", fullsample = TRUE){
       sum_2SHLKY = matrix(NA,nrow=dat_col/2,ncol=6)
       sum_2SHL12P = matrix(NA,nrow=dat_col/2,ncol=4)
 
-      alpha = rep(0.05,dat_col)
+      alpha = 0.05
       sumStat = getInfo(data,alpha)
       sum_MM = sumStat[,c(5,6,2,1)]
       sum_LS = sumStat[,c(3,4,2,1)]
