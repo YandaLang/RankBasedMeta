@@ -21,7 +21,7 @@
 #' @keywords robust
 #' @keywords Meta-analysis
 
-#' @import stats Rfit npsmReg2
+#' @import stats Rfit
 #' @export
 
 rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alpha = 0.05, iternation = 1000){
