@@ -1,0 +1,40 @@
+#' Meta-analysis for fixed effects - LI3
+#' @description Meta-analysis for fixed effects - LI3
+#' @usage
+#' FELI3(info,alpha=0.05)
+#' @param info summary statistics
+#' @param alpha significance level, default alpha=0.05
+#' @author Yanda Lang, Joseph McKean, Omer Ozturk
+#' @note format for summary statistics (point estimate 1, point estimate 2)
+#' @examples
+#' study1 <- c(247.5, 178.0)
+#' study2 <- c(270.0, 167.0)
+#' study3 <- c(243.0, 186.3)
+#' study4 <- c(215.2, 133.7)
+#' study5 <- c(245.5, 171.0)
+#' info <- rbind(study1,study2,study3,study4,study5)
+#' FELI3(info,alpha=0.05)
+#' @keywords robust
+#' @keywords Meta-analysis
+
+#' @import stats Rfit
+#' @export
+
+
+FELI3 = function(info,alpha=0.05){
+  K = nrow(info)
+  est1 = info[,1]; est2 = info[,2]
+  deltahat = est1-est2
+
+  deltatilde = median(walsh(deltahat))
+  D = sort(walsh(deltahat))
+  c = round(K*(K+1)/4-0.5-qnorm(1-alpha/2)*sqrt(K*(K+1)*(2*K+1)/24))
+  lower = D[c+1]
+  upper = D[K*(K+1)/2-c]
+
+  combineCI = cbind(deltatilde, lower, upper)
+  colnames(combineCI) = c("DeltaEstimate","LowerBound","UpperBound")
+  rownames(combineCI) = c(" ")
+  return(combineCI)
+}
+
