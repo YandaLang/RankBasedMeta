@@ -46,6 +46,6 @@ REBS1S = function(info,iteration=1000,alpha=0.05){
   upper = qt(1-alpha/2,K-1)*sqrt(ttvar)+deltatilde
 
   combineCI = cbind(deltatilde, lower, upper)
-  colnames(combineCI) = c("DeltaEstimate","LowerBound","UpperBound")
+  colnames(combineCI) = c("Estimate","CI.lowerbound","CI.upperbound")
   return(combineCI)
 }

@@ -45,7 +45,7 @@ FEWNP = function(info,alpha=0.05){
   upper = qt(1-alpha/2,K-1)*sqrt(B_hat)+deltatilde
   sqrtB = sqrt(B_hat)
   combineCI = cbind(deltatilde, lower, upper)
-  colnames(combineCI) = c("DeltaEstimate","LowerBound","UpperBound")
+  colnames(combineCI) = c("Estimate","CI.lowerbound","CI.upperbound")
   return(combineCI)
 }
 

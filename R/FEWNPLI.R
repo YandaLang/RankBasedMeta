@@ -53,6 +53,6 @@ FEWNPLI = function(info,alpha=0.05){
   sqrtB = sqrt(B_hat)
 
   combineCI = cbind(deltatilde, lower, upper)
-  colnames(combineCI) = c("DeltaEstimate","LowerBound","UpperBound")
+  colnames(combineCI) = c("Estimate","CI.lowerbound","CI.upperbound")
   return(combineCI)
 }

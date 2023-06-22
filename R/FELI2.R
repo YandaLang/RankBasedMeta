@@ -34,7 +34,7 @@ FELI2 = function(info,alpha=0.05){
   upper = D[K-c]
 
   combineCI = cbind(deltatilde, lower, upper)
-  colnames(combineCI) = c("DeltaEstimate","LowerBound","UpperBound")
+  colnames(combineCI) = c("Estimate","CI.lowerbound","CI.upperbound")
   rownames(combineCI) = c(" ")
   return(combineCI)
 }
