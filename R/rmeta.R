@@ -178,7 +178,8 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
       }
     }
   }
-  meta_df = data.frame(meta_result)
+  cl = 1-alpha
+  meta_df = data.frame(meta_result,conf.level=cl)
   return(meta_df)
 }
 
