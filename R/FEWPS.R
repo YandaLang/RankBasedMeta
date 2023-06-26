@@ -19,7 +19,7 @@
 
 FEWPS = function(info,alpha=0.05){
   K = nrow(info)
-  deltahat = info[,1]; tauhat = info[,2]
+  deltahat = -info[,1]; tauhat = info[,2]
   tauhatsq = tauhat^2
 
   deltatilde = sum(deltahat/tauhatsq)/sum(1/tauhatsq)

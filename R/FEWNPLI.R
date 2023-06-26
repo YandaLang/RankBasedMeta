@@ -20,7 +20,7 @@
 
 FEWNPLI = function(info,alpha=0.05){
   K = nrow(info)
-  deltahat = info[,1]; n1 = info[,2]; n2 = info[,3]
+  deltahat = -info[,1]; n1 = info[,2]; n2 = info[,3]
 
   m = rep(NA,K)
   for (i in 1:K) {

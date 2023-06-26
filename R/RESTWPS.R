@@ -19,7 +19,7 @@
 
 RESTWPS = function(info,alpha=0.05){
   K = nrow(info)
-  deltahat = info[,1]; tauhat1 = info[,2]; tauhat2 = info[,3]; n1 = info[,4]; n2 = info[,5]
+  deltahat = -info[,1]; tauhat1 = info[,2]; tauhat2 = info[,3]; n1 = info[,4]; n2 = info[,5]
 
   taup = ((n1-1)*tauhat1^2+(n2-1)*tauhat2^2)/(n1+n2-2)
   tauhatsq = taup*sqrt(1/n1+1/n2)

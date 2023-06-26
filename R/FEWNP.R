@@ -19,7 +19,7 @@
 
 FEWNP = function(info,alpha=0.05){
   K = nrow(info)
-  deltahat = info[,1]; tauhat1 = info[,2]; tauhat2 = info[,3]; n1 = info[,4]; n2 = info[,5]
+  deltahat = -info[,1]; tauhat1 = info[,2]; tauhat2 = info[,3]; n1 = info[,4]; n2 = info[,5]
   tauhatsq1 = tauhat1^2; tauhatsq2 = tauhat2^2
   tauhatsq = tauhatsq1/n1+tauhatsq2/n2
 

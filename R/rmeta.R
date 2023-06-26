@@ -59,7 +59,7 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
         meta_result = FE1SPT(sum_LS,alpha)
       }  else if (method == "HLNP") {
         meta_result = FE1S2T(sum_HLKSM,alpha)
-      } else if (method == "HLPT") {
+      } else if (method == "HLPS") {
         meta_result = FE1SPT(sum_HLKSM,alpha)
       } else if (method == "WNP") {
         meta_result = FEWNP(sum_WNP,alpha)
@@ -87,7 +87,7 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
         meta_result = FE1SPT(data,alpha)
       }  else if (method == "HLNP") {
         meta_result = FE1S2T(data,alpha)
-      } else if (method == "HLPT") {
+      } else if (method == "HLPS") {
         meta_result = FE1SPT(data,alpha)
       } else if (method == "WNP") {
         meta_result = FEWNP(data,alpha)
