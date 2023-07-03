@@ -22,7 +22,7 @@
 
 meta.qqplot = function(data, comparison = TRUE, effect = "fixed", residual = "MMPS"){
   dat_col = ncol(data); K = dat_col/2
-  Yhat = rmeta(data, effect = effect, method = residual)[1,1]
+  Yhat = rmeta(data, effect = effect, method = residual)[[1]][1,1]
   if (comparison == TRUE){
     par(mfrow=c(K,2))
     for (i in 1:dat_col){
