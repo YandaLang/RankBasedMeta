@@ -16,6 +16,8 @@ rmeta(data, effect = "fixed", method = "MMNP", fullsample = TRUE)
 \item{fullsample}{data type. full sample or summary statistics for limited information}
 
 \item{alpha}{significance level, default alpha=0.05}
+
+\item{iteration}{number of iterations for bootstrap, only used for random effect bootstrap methods}
 }
 \description{
 Rank-based Meta-analysis

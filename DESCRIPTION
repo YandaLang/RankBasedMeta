@@ -9,6 +9,7 @@ Imports:
     base,
     stats,
     Rfit,
+    metafor
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -73,7 +73,6 @@ getInfo = function(dat,alpha=0.05){
   }
 
   summaryMed = cbind(n1,n2,xbar1,xbar2,stdev1,stdev2,med1,med2,tauhat_mm1,tauhat_mm2,med_walsh1,med_walsh2,tauhat_KSM1,tauhat_KSM2,delta_w,tauhat_wp)
-  #summaryMed = cbind(alpha,n,xbar,stdev,med,tauhat_mm,med_walsh1,tauhat_walsh1)
   return(summaryMed)
 }
 

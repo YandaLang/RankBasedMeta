@@ -35,6 +35,8 @@ FELI3 = function(info,alpha=0.05){
   combineCI = cbind(deltatilde, lower, upper)
   colnames(combineCI) = c("Estimate","CI.lowerbound","CI.upperbound")
   rownames(combineCI) = c(" ")
-  return(combineCI)
+  indstudy = data.frame(deltahat)
+  output = list(combineCI,indstudy)
+  return(output)
 }
 

@@ -7,6 +7,7 @@
 #' @param method Meta-analysis methods, default MMNP
 #' @param fullsample data type. full sample or summary statistics for limited information
 #' @param alpha significance level, default alpha=0.05
+#' @param iteration number of iterations for bootstrap, only used for random effect bootstrap methods
 #' @author Yanda Lang, Joseph McKean, Omer Ozturk
 #' @note format for full sample: data[,1] <- study1_treatment; data[,2] <- study1_control; data[,3] <- study2_treatment; data[,4] <- study2_control;...
 #' @note format for summary statistics: data[1,] <- c(study1_treatmentlocation, study1_treatmentscale, study1_treatmentsamplesize); data[2,] <- c(study1_controllocation,study1_controlscale,study1_controlsamplesize); data[3,] <- c(study2_treatmentlocation,study2_treatmentscale,study2_treatmentsamplesize);...
@@ -24,8 +25,8 @@
 #' @import stats Rfit
 #' @export
 
-rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alpha = 0.05, iternation = 1000){
-  a = alpha; n.iter = iternation
+rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alpha = 0.05, iteration = 1000){
+  a = alpha; n.iter=iteration
   if (effect == "fixed") {
     if (fullsample==TRUE){
       dat_col = ncol(data)
@@ -50,59 +51,59 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
       sum_HLKSMLI = sumStat[,c(11,12,1,2)]
 
       if (method == "MMNP") {
-        meta_result = FE1S2T(sum_MM,alpha)
+        meta_result = FE1S2T(sum_MM,alpha=a)
       } else if (method == "MMPS") {
-        meta_result = FE1SPT(sum_MM,alpha)
+        meta_result = FE1SPT(sum_MM,alpha=a)
       } else if (method == "LSNP") {
-        meta_result = FE1S2T(sum_LS,alpha)
+        meta_result = FE1S2T(sum_LS,alpha=a)
       } else if (method == "LSPS") {
-        meta_result = FE1SPT(sum_LS,alpha)
+        meta_result = FE1SPT(sum_LS,alpha=a)
       }  else if (method == "HLNP") {
-        meta_result = FE1S2T(sum_HLKSM,alpha)
+        meta_result = FE1S2T(sum_HLKSM,alpha=a)
       } else if (method == "HLPS") {
-        meta_result = FE1SPT(sum_HLKSM,alpha)
+        meta_result = FE1SPT(sum_HLKSM,alpha=a)
       } else if (method == "WNP") {
-        meta_result = FEWNP(sum_WNP,alpha)
+        meta_result = FEWNP(sum_WNP,alpha=a)
       } else if (method == "WPS") {
-        meta_result = FEWPS(sum_WPS,alpha)
+        meta_result = FEWPS(sum_WPS,alpha=a)
       }  else if (method == "MMLI") {
-        meta_result = FELI(sum_MMLI,alpha)
+        meta_result = FELI(sum_MMLI,alpha=a)
       } else if (method == "MMLI2") {
-        meta_result = FELI2(sum_MMLI,alpha)
+        meta_result = FELI2(sum_MMLI,alpha=a)
       } else if (method == "MMLI3") {
-        meta_result = FELI3(sum_MMLI,alpha)
+        meta_result = FELI3(sum_MMLI,alpha=a)
       } else if (method == "HLLI") {
-        meta_result = FELI(sum_HLKSMLI,alpha)
+        meta_result = FELI(sum_HLKSMLI,alpha=a)
       } else if (method == "WNPLI") {
-        meta_result = FEWNPLI(sum_WNPLI,alpha)
+        meta_result = FEWNPLI(sum_WNPLI,alpha=a)
       }
     } else {
       if (method == "MMNP") {
-        meta_result = FE1S2T(data,alpha)
+        meta_result = FE1S2T(data,alpha=a)
       } else if (method == "MMPS") {
-        meta_result = FE1SPT(data,alpha)
+        meta_result = FE1SPT(data,alpha=a)
       } else if (method == "LSNP") {
-        meta_result = FE1S2T(data,alpha)
+        meta_result = FE1S2T(data,alpha=a)
       } else if (method == "LSPS") {
-        meta_result = FE1SPT(data,alpha)
+        meta_result = FE1SPT(data,alpha=a)
       }  else if (method == "HLNP") {
-        meta_result = FE1S2T(data,alpha)
+        meta_result = FE1S2T(data,alpha=a)
       } else if (method == "HLPS") {
-        meta_result = FE1SPT(data,alpha)
+        meta_result = FE1SPT(data,alpha=a)
       } else if (method == "WNP") {
-        meta_result = FEWNP(data,alpha)
+        meta_result = FEWNP(data,alpha=a)
       } else if (method == "WPS") {
-        meta_result = FEWPS(data,alpha)
+        meta_result = FEWPS(data,alpha=a)
       }  else if (method == "MMLI") {
-        meta_result = FELI(data,alpha)
+        meta_result = FELI(data,alpha=a)
       } else if (method == "MMLI2") {
-        meta_result = FELI2(data,alpha)
+        meta_result = FELI2(data,alpha=a)
       } else if (method == "MMLI3") {
-        meta_result = FELI3(data,alpha)
+        meta_result = FELI3(data,alpha=a)
       } else if (method == "HLLI") {
-        meta_result = FELI(data,alpha)
+        meta_result = FELI(data,alpha=a)
       } else if (method == "WNPLI") {
-        meta_result = FEWNPLI(data,alpha)
+        meta_result = FEWNPLI(data,alpha=a)
       }
     }
   }
@@ -114,7 +115,6 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
       sum_LS = matrix(NA,nrow=dat_col/2,ncol=6)
       sum_HLKSM = matrix(NA,nrow=dat_col/2,ncol=6)
       sum_W = matrix(NA,nrow=dat_col/2,ncol=5)
-      #sum_WPS = matrix(NA,nrow=dat_col/2,ncol=2)
       sum_WNPLI = matrix(NA,nrow=dat_col/2,ncol=3)
       sum_MMLI = matrix(NA,nrow=dat_col/2,ncol=4)
       sum_HLKSMLI = matrix(NA,nrow=dat_col/2,ncol=4)
@@ -124,7 +124,6 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
       sum_LS = sumStat[,c(3,4,5,6,1,2)]
       sum_HLKSM = sumStat[,c(11,12,13,14,1,2)]
       sum_W = sumStat[,c(15,13,14,1,2)]
-      #sum_WPS = sumStat[,c(15,16)]
       sum_WNPLI = sumStat[,c(15,1,2)]
       sum_MMLI = sumStat[,c(7,8,1,2)]
       sum_HLKSMLI = sumStat[,c(11,12,1,2)]
@@ -145,12 +144,12 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
         meta_result = RESTWNP(sum_W,alpha=a)
       } else if (method == "WPSREST") {
         meta_result = RESTWPS(sum_W,alpha=a)
-      } else if (method == "MMREBS") {
-        meta_result = REBS1S(sum_MMLI,alpha=a)
-      } else if (method == "HLREBS") {
-        meta_result = REBS1S(sum_HLKSMLI,alpha=a)
-      } else if (method == "WREBS") {
-        meta_result = REBS2S(WNPLI,alpha=a)
+      } else if (method == "MMNPREBS") {
+        meta_result = REBS1S(sum_MMLI,iteration=n.iter,alpha=a)
+      } else if (method == "HLNPREBS") {
+        meta_result = REBS1S(sum_HLKSMLI,iteration=n.iter,alpha=a)
+      } else if (method == "WNPREBS") {
+        meta_result = REBS2S(sum_WNPLI,iteration=n.iter,alpha=a)
       }
     } else {
       if (method == "MMNPREST") {
@@ -169,18 +168,18 @@ rmeta = function(data, effect = "fixed", method = "MMNP", fullsample = TRUE, alp
         meta_result = RESTWNP(data,alpha=a)
       } else if (method == "WPSREST") {
         meta_result = RESTWPS(data,alpha=a)
-      } else if (method == "MMREBS") {
-        meta_result = REBS1S(data,iternation=n.iter,alpha=a)
-      } else if (method == "HLREBS") {
-        meta_result = REBS1S(data,iternation=n.iter,alpha=a)
-      } else if (method == "WREBS") {
-        meta_result = REBS2S(data,iternation=n.iter,alpha=a)
+      } else if (method == "MMNPREBS") {
+        meta_result = REBS1S(data,iteration=n.iter,alpha=a)
+      } else if (method == "HLNPREBS") {
+        meta_result = REBS1S(data,iteration=n.iter,alpha=a)
+      } else if (method == "WNPREBS") {
+        meta_result = REBS2S(data,iteration=n.iter,alpha=a)
       }
     }
   }
   cl = 1-alpha
-  meta_df = data.frame(meta_result,conf.level=cl)
-  return(meta_df)
+  meta_result[[1]] = data.frame(meta_result[[1]],conf.level=cl)
+  return(meta_result)
 }
 
 
