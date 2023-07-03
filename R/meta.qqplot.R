@@ -21,14 +21,20 @@
 #' @export
 
 meta.qqplot = function(data, comparison = TRUE, effect = "fixed", residual = "MMPS"){
-  par(mar = c(2.5, 4, 2, 2))
+  par(mar = c(5.1, 4, 2, 2))
   dat_col = ncol(data); K = dat_col/2
   Yhat = rmeta(data, effect = effect, method = residual)[[1]][1,1]
   if (comparison == TRUE){
     par(mfrow=c(K,2))
     for (i in 1:dat_col){
+      k = ceiling(i/2)
+      if((i%%2) == 0) {
+        group = 2
+      } else {
+        group = 1
+      }
       Yresidual = data[,i]-Yhat
-      qqnorm(Yresidual,main=residual);qqline(Yresidual)
+      qqnorm(Yresidual,main=residual, xlab=bquote(paste("Study ", .(k), " - Group ", .(group))));qqline(Yresidual)
     }
     par(mfrow=c(1,1))
   }else if (comparison == FALSE){
@@ -38,6 +44,5 @@ meta.qqplot = function(data, comparison = TRUE, effect = "fixed", residual = "MM
     qqnorm(Yresidual,main=residual);qqline(Yresidual)
   }
 }
-
 
 
