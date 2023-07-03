@@ -18,6 +18,7 @@
 #' @export
 
 meta.forest = function(data, effect="fixed", fullsample=TRUE, method='MMPS', xlab=c(""), pooled=FALSE){
+  par(mar = c(2.5, 4, 2, 2))
   if (method=='MMPS' || method=='MMNP' || method=='MMNPREST' || method=='MMPSREST') {
     tempres = rmeta(data, effect = effect, method = method, fullsample = fullsample)
     forest(x=tempres[[2]][,1], vi=tempres[[2]][,2], , header=c("Study","Difference in Medians [95% CI]"), slab=rownames(tempres[[2]]), ylim=c(-1,nrow(tempres[[2]])+3), xlab=xlab)

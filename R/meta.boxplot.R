@@ -19,6 +19,7 @@
 #' @export
 
 meta.boxplot = function(data, horizontal = FALSE){
+  par(mar = c(2.5, 4, 2, 2))
   boxplot(data, horizontal = horizontal)
 }
 

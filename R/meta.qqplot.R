@@ -21,6 +21,7 @@
 #' @export
 
 meta.qqplot = function(data, comparison = TRUE, effect = "fixed", residual = "MMPS"){
+  par(mar = c(2.5, 4, 2, 2))
   dat_col = ncol(data); K = dat_col/2
   Yhat = rmeta(data, effect = effect, method = residual)[[1]][1,1]
   if (comparison == TRUE){
